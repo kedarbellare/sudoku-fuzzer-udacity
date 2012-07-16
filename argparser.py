@@ -21,6 +21,5 @@ def get_args():
             check_edges = args.check_edges)
     for argname in ("mutations", "iters"):
         if hasattr(args, argname):
-            argval = getattr(args, argname)
-            options_dict[argname] = argval if type(argval) == int else int(argval)
+            options_dict[argname] = getattr(args, argname)
     return options_dict
