@@ -27,6 +27,13 @@ if __name__ == '__main__':
         except ImportError:
             print """couldn't import an option parser. Run in interactive mode."""
     args_dict = get_args()
+    def conv_arg_to_int(argname):
+        if argname in args_dict:
+            argval = args_dict[argname]
+            args_dict[argname] = argval if type(argval) == int else int(argval)
+        return True
+    assert conv_arg_to_int('mutations') and conv_arg_to_int('iters')
+    print args_dict
     import imp, os
     filepath = os.path.abspath(args_dict["solver_file"])
     mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
